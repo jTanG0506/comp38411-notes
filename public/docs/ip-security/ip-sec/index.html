@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="IPSec"><meta property="og:title" content="IPSec" />
+<meta property="og:description" content="IPSec IPSec is a specification for the IP level security features that are defined in the IPv6 internet protocol. IPSec is below the transport layer and so is transparent to applications, meaning there is no need to make changes to software when IPSec is implemented in the firewall or router. IP level authentication means that the source of the packet is as stated in the packet header, and that the packet was not altered during transmission." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/ip-security/ip-sec/" />
+
+<title>IPSec | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/"class=active>IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>IPSec</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="ipsec">IPSec</h2>
+
+<p><strong>IPSec</strong> is a specification for the IP level security features that are defined in the IPv6 internet protocol. IPSec is below the transport layer and so is transparent to applications, meaning there is no need to make changes to software  when IPSec is implemented in the firewall or router. IP level authentication means that the source of the packet is as stated in the packet header, and that the packet was not altered during transmission. IP level confidentiality means that a perpetrator cannot eavesdrop on the communications during transit of data.</p>
+
+<p>IP level authentication can be provided by inserting an <strong>Authentication Header</strong> (AH) into the packets, which is simply a hash value for the portions of a packet that are expected to stay invariant during its transmission from the source to the destination. IP level confidentiality can be provided by inserting an <strong>Encapsulating Security Payload</strong> (ESP) header into  the packets, which can do the job of the AH header by providing authentication in addition to confidentiality.</p>
+
+<hr>
+
+<h3 id="security-association">Security Association</h3>
+
+<p>A <strong>Security Association</strong> (SA) is a one-way logical connection between a sender and a receiver that affords security services to the traffic carried on it. That is, a security association is an establishment of a set of security attributes between entities for the protection of IP traffic. An SA may include attributes such as the authentication mechanism (HMAC being the default), the encryption algorithm and mode (DES-CBC being the default), a shared session key, and the initialisation vector. Since an SA is unidirectional, two security associations are required if we wish to have a secure two-way exchange.</p>
+
+<p>A security association is uniquely identified by:</p>
+
+<ol>
+<li><strong>Security Parameters Index (SPI)</strong>: A 32-bit unsigned integer assigned to this SA and having local significance only.</li>
+<li><strong>IP Destination Address</strong>: The address of the destination endpoint of the SA, which may be an end-user system or a network such as a firewall or a router.</li>
+<li><strong>Security Protocol Identifier</strong>: Identifier for whether the association is an AH or ESP security association.</li>
+</ol>
+
+<hr>
+
+<h3 id="key-management">Key Management</h3>
+
+<p>There are two types of key management, as described by the IPSec Architecture document.</p>
+
+<ul>
+<li><strong>Manual</strong>: The keying material and SA data are manually configured for each system. This is practical for small, relatively static environments but does not scale well.</li>
+<li><strong>Automated</strong>: An automated system enables the on-demand creation of keys for SAs and facilitates the use of keys in a large distributed system.</li>
+</ul>
+
+<hr>
+
+<h3 id="establishing-an-sa-and-session-key">Establishing an SA and Session Key</h3>
+
+<p><figure><img src="/docs/figures/ike-phase-1.png" alt="IKE Phase 1"></figure></p>
+
+<ol>
+<li>The initiator <span  class="math">\(I\)</span> sends a SA negotiation payload <span  class="math">\(SA_I\)</span> with one or more proposals.</li>
+<li>The responder <span  class="math">\(R\)</span> chooses a single SA from the proposals and responds with <span  class="math">\(SA_R\)</span>.</li>
+<li>The initiator sends the key exchange payload <span  class="math">\(KE_I\)</span> containing the public information exchanged in a Diffie-Hellman exchange and a nonce payload <span  class="math">\(N_I\)</span>.</li>
+<li>The responder also sends a Diffie-Hellman key exchange payload <span  class="math">\(KE_R\)</span> and a nonce payload <span  class="math">\(N_R\)</span>.</li>
+<li>The initiator sends their certificate <span  class="math">\(Cert_I\)</span> along with their signature on <span  class="math">\(R\)</span>'s nonce, <span  class="math">\(I\{N_R\}\)</span>.</li>
+<li>The responder sends their certificate <span  class="math">\(Cert_R\)</span> along with their signature on <span  class="math">\(I\)</span>'s nonce, <span  class="math">\(R\{N_I\}\)</span>.</li>
+</ol>
+
+<hr>
+
+<h3 id="authentication-methods">Authentication Methods</h3>
+
+<p>The <strong>Internet Security Association and Key Management Protocol</strong> (ISAKMP) is a protocol for establishing Security Associations and cryptographic keys, which supports multiple authentication methods:</p>
+
+<ol>
+<li><strong>Symmetric Key Cryptography</strong>: Each host has the same pre-installed keys, and the peers authenticate one another by computing and sending a keyed hash of data which includes the pre-shared keys.</li>
+<li><strong>Public Key Cryptography</strong>: Each party generates a nonce and encrypts it and their ID using the other party's public key. The ability to decrypt the data with the local private key authenticates the parties to each other. This method requires the ability to generate random numbers and perform public-key encryption and decryption. Currently, only the RSA algorithm is supported.</li>
+<li><strong>Digital Signatures</strong>: Each device signs some data contributed by the other entity, providing non-repudiation. This scheme supports both RSA and DSS.</li>
+</ol>
+
+<hr>
+
+<h3 id="transport-mode">Transport Mode</h3>
+
+<p>The <strong>Transport Mode</strong> is the <em>regular</em> mode for packets to travel from a source to its destination in a network and is only applicable to host implementations. The two endpoints must carry out the security checks on the packets based on the information contained in the authentication header. In Transport Mode, the original source and destination addresses are visible, thus enabling technology to ensure Quality of Service (QoS), but makes traffic analysis possible.</p>
+
+<p><figure><img src="/docs/figures/transport-mode.png" alt="Transport Mode"></figure></p>
+
+<hr>
+
+<h3 id="tunnel-mode">Tunnel Mode</h3>
+
+<p>Suppose the source and destination endpoints for a given packet stream do not have the ability or resources to carry on the security checks on the packets. Therefore, the source must route the packets to an IPSec Server <span  class="math">\(X\)</span> whose role is to insert the authentication and / or ESP headers. If the intended destination also is not able to carry out such security checks on the packets, <span  class="math">\(X\)</span> may need to send the packets to another IPSec Server <span  class="math">\(Y\)</span>, which is in the <em>vicinity</em> of the actual destination of the packet stream. The host at <span  class="math">\(Y\)</span> can then carry out the security verification based on the information provided in the security headers inserted b <span  class="math">\(X\)</span> and send the packets to their true destination.</p>
+
+<p><figure><img src="/docs/figures/tunnel-mode.png" alt="Tunnel Mode"></figure></p>
+
+<p><span  class="math">\(X\)</span> is sometimes referred to as the <strong>encapsulator</strong> and <span  class="math">\(Y\)</span> as the <strong>decapsulator</strong>. The points <span  class="math">\(X\)</span> and <span  class="math">\(Y\)</span> define the two endpoints of what's referred to as a <strong>tunnel</strong>.</p>
+
+<hr>
+
+<h3 id="transport-mode-vs-tunnel-mode">Transport Mode vs Tunnel Mode</h3>
+
+<p>If we wish to use IPSec for just authentication of sender and receiver information that is placed in the IP headers, and if the two endpoints can do authentication processing, then we can use IPSec in Transport Mode with AH headers. Conversely, if the endpoints cannot do their own authentication, we need to use IPSec in Tunnel Mode.</p>
+
+<p>If we wish to use IPSec for confidentiality via the means of encryption, we will need to use ESP headers, with or without AH headers since the ESP headers can carry out authentication. Likewise, if the two endpoints are capable of security processing, then we can use IPSec in the Transport Mode, else Tunnel Mode.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

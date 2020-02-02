@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/applications/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/block-ciphers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/digest-functions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/digital-signatures/digital-signature-algorithm/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/entity-authentication/entity-authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/key-management-issues/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-infrastructure/overview-of-pki/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/revision/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/symmetric-encryption/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/tcp-ip-protocol-stack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/digital-signatures/dsa-vs-rsa/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/diffie-hellman-protocol/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-infrastructure/digital-certificates/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/fiestel-schemes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/ip-sec/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/key-definitions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/message-authentication-code/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/one-time-pad/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/properties/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/entity-authentication/unix-password-based-authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/data-encryption-standard/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/key-distribution-without-pkc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/keyed-hashes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/entity-authentication/one-time-passwords/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/security-attacks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-algorithm/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/transpositions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/virtual-private-networks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-infrastructure/x509-certificates/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/achieving-security/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/advanced-encryption-standard/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/authentication-header/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/hmac/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/malleability-of-textbook-rsa/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/needham-schroeder-protocol/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/entity-authentication/smart-card-based-authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/stream-ciphers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/attack-surfaces/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-encryption/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/encapsulating-security-payload/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/how-secure/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/key-distribution-using-pkc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/modes-of-operation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-for-encryption/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/entity-authentication/x509-certificate-based-authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/anti-replay/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-ciphers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/breaking-textbook-rsa-signatures/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/key-management/comparison-of-key-establishment-protocols/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction-to-cryptography/cryptanalysis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/introduction/security-models/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/conventional-cryptography/attacks-on-block-ciphers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/public-key-cryptography/hybrid-cryptosystems/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/combining-security-associations/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/counter-with-cbc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/comparison-of-ip-level-authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/mac-and-hash-functions/galois-counter-mode/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://comp38411.jtang.dev/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on COMP38411</title>
+    <link>https://comp38411.jtang.dev/</link>
+    <description>Recent content in Home on COMP38411</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="https://comp38411.jtang.dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Applications of Public Key Cryptography</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/applications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/applications/</guid>
+      <description>Introduction to Public Key Cryptography Public key encryption (or asymmetric encryption) makes use of two keys:
+ a public key, which can be used by anyone who would like to encrypt a message for you a private key, which is used to decrypt messages encrypted using your public key  
+In the diagram above, we have a pair of asymmetric key, \(K_E\) and \(K_D\), we encrypt a plaintext \(C = E(K_E, P)\) and decrypt a ciphertext \(P = D(K_D, C)\).</description>
+    </item>
+    
+    <item>
+      <title>Block Ciphers</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/block-ciphers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/block-ciphers/</guid>
+      <description>Block ciphers A block cipher consists of an algorithm and a decryption algorithm.
+ the encryption algorithm \(E\), which takes a key \(K\) and a plaintext block \(P\) and produces a ciphertext block, \(C\). We write this as \(C = E(K, P)\). the decryption algorithm \(D\) is the inverse of the encryption algorithm and decrypts a ciphertext \(C\) to the origin plaintext \(P\). We write this as \(P = D(K, C)\).</description>
+    </item>
+    
+    <item>
+      <title>Digest Functions</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/digest-functions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/digest-functions/</guid>
+      <description>Digest functions Digest functions, also known as hash functions, takes an input of any length and produces a short, fixed sized output, known as the digest or hash value. Digest functions are used everywhere in the world: Git&#39;s revision control system uses them to identify files in a repository; forensics use hash values to prove that digital artefacts have not been modified - and many more.
+
+As digest functions have a compression property, this function is a many-to-one mapping, so collisions are unavoidable.</description>
+    </item>
+    
+    <item>
+      <title>Digital Signature Algorithm</title>
+      <link>https://comp38411.jtang.dev/docs/digital-signatures/digital-signature-algorithm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/digital-signatures/digital-signature-algorithm/</guid>
+      <description>Digital Signature Algorithm The idea of digital signatures is to prove that the holder of the private key tied to a particular digital signature signed the message and that the signature is authentic. Digital signatures should be message-dependent so that signatures are non-reusable (thus ensuring integrity), signer-dependent so that signatures are unforgeable (thus ensuring authenticity) and verifiable so that others can verify that the signature is indeed from the originator.</description>
+    </item>
+    
+    <item>
+      <title>Entity Authentication</title>
+      <link>https://comp38411.jtang.dev/docs/entity-authentication/entity-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/entity-authentication/entity-authentication/</guid>
+      <description>Entity Authentication Entity authentication is the process whereby one party is assured of the identity of a second party, through corroborative evidence provided by the second party. Suppose \(A\) wishes to verify the identity of \(B\); then we will refer to \(A\) as the verifier and B as the prover or claimant.
+One of the primary purposes of entity authentication is to facilitate access control to a resource when an access privilege is linked to a particular identity; this is known as authorisation.</description>
+    </item>
+    
+    <item>
+      <title>Key Management Issues</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/key-management-issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/key-management-issues/</guid>
+      <description>Key Management Issues Key management refers to the management of keys in a cryptosystem, which includes:
+ Generation: how should keys be generated such that the strength of the key is appropriate for the use case? Storage: how should keys be stored securely so that they cannot be easily stolen? Also, keys should never be stored alongside the data they are trying to protect, as any exfiltration of the protected data will also compromise the key.</description>
+    </item>
+    
+    <item>
+      <title>Overview of Public Key Infrastructure</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-infrastructure/overview-of-pki/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-infrastructure/overview-of-pki/</guid>
+      <description>Overview of Public Key Infrastructure Public Key Infrastructure (PKI) is the combined set of protocols, hardware, software, user roles, policies and procedures used to manage asymmetric key information across a network, which enable practical deployment and wide-scale application of public key cryptography.
+ Components of a PKI  End entity: the end-users, devices, or any other entity that can be identified in the subject field of a public-key certificate. Certification Authority (CA): the issuer of certificates and certificate revocation lists (CRLs).</description>
+    </item>
+    
+    <item>
+      <title>Revision</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/revision/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/revision/</guid>
+      <description>Revision Two common mathematical notions in cryptography are modulo arithmetic and the XOR operator.
+ The XOR Operator In short, the XOR operator is a binary operation that outputs true only when its inputs differ. We will denote this operator by \(\oplus\), also commonly denoted as \(\wedge\) in other places.
+Properties of XOR There are four important properties of XOR that we will making use of in later sections.
+ commutative: \(A \oplus B = B \oplus A\) associative: \(A \oplus (B \oplus C) = (A \oplus B) \oplus C\) identity element: \(A \oplus 0 = A\) self-inverse: \(A \oplus A = 0\)   Modulo Arithmetic For \(a, b \in \mathbb{Z}\), \(n \in \mathbb{N}\), we say that \(a\) is congruent to \(b\) modulo \(n\) if and only if \(\exists k \in \mathbb{Z}\) such that \(a - b = kn\), and is denoted \(a \equiv b \; (\text{mod} \; n)\).</description>
+    </item>
+    
+    <item>
+      <title>Symmetric Encryption</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/symmetric-encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/symmetric-encryption/</guid>
+      <description>Cryptography is the practice and study of techniques for secure communication through the use of codes so that only those for whom the information is intended can be read and process it. An original message is known as the plaintext, whereas the coded message is known as ciphertext. The process of converting from plaintext from ciphertext is known as enciphering or encryption, and restoring the plaintext from ciphertext is known as deciphering or decryption.</description>
+    </item>
+    
+    <item>
+      <title>TCP / IP Protocol Stack</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/tcp-ip-protocol-stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/tcp-ip-protocol-stack/</guid>
+      <description>TCP / IP Protocol Stack Internet Protocol (IP) deals with routing packets of data from one computer to another. Transmission Control Protocol (TCP) deals with ensuring that data packets are delivered reliably from one computer to another. We could say that TCP sits on top of IP, in the sense that TCP asks IP to send a packet to its destination and ensures that the packet was indeed received at the destination.</description>
+    </item>
+    
+    <item>
+      <title>Comparison of DSA and RSA</title>
+      <link>https://comp38411.jtang.dev/docs/digital-signatures/dsa-vs-rsa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/digital-signatures/dsa-vs-rsa/</guid>
+      <description>Comparison of DSA and RSA     RSA DSA     Security Based on factoring large numbers Based on taking discrete logarithms   Functionality Encryption and Signatures Signatures only   Performance Faster than DSA in verification About the same in generation Some signature computation can be computed a priori   Exposure Message digest can be recovered from the signature Message digest cannot be recovered from the signature   Ephermeral Key No ephemeral key required One for each message    </description>
+    </item>
+    
+    <item>
+      <title>Diffie-Hellman Protocol</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/diffie-hellman-protocol/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/diffie-hellman-protocol/</guid>
+      <description>Diffie-Hellman Diffie-Hellman was the first public-key exchange protocol invented, a protocol that allows two parties to establish a shared secret by exchanging information visible to an eavesdropper. Prior to Diffie-Hellman, establishing a shared secret required inconvenient procedures such as physically exchanging sealed envelopes containing the secrets.
+ Diffie-Hellman Function The Diffie-Hellman function usually works with groups \(\mathbb{Z}_p\), that is, the set of positive integer numbers, along with multiplication modulo \(p\) as the group operation.</description>
+    </item>
+    
+    <item>
+      <title>Digital Certificates</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-infrastructure/digital-certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-infrastructure/digital-certificates/</guid>
+      <description>Digital Certificates Digital certificates are electronic documents which can be used to prove the ownership of a public key. Digital certificates are digitally signed by a Certificate Authority, an entity which verifies the contents of the certificate.
+ Trust Models One model of PKI is called the web of trust, in which the identity of a public key is attested to by someone you trust, such as a friend or a friend of a friend.</description>
+    </item>
+    
+    <item>
+      <title>Fiestel Schemes</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/fiestel-schemes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/fiestel-schemes/</guid>
+      <description>Feistel schemes IBM engineer Horst Feistel designed a block cipher that works as follows:
+ Split the 64-bit block into two 32-bit halves, \(L\) and \(R\) Set \(L\) to \(L \oplus F(R)\), where \(F\) is a substitution-permutation round Swap the values of \(L\) and \(R\) Repeat steps 2 and 3, 15 times Merge \(L\) and \(R\) into the 64-bit output block  
+A functionally equivalent representation would be to alternate the round operations \(L = L \oplus F(R)\) and \(R = R \oplus F(L)\) instead of swapping \(L\) and \(R\), as shown in the diagram above.</description>
+    </item>
+    
+    <item>
+      <title>IPSec</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/ip-sec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/ip-sec/</guid>
+      <description>IPSec IPSec is a specification for the IP level security features that are defined in the IPv6 internet protocol. IPSec is below the transport layer and so is transparent to applications, meaning there is no need to make changes to software when IPSec is implemented in the firewall or router. IP level authentication means that the source of the packet is as stated in the packet header, and that the packet was not altered during transmission.</description>
+    </item>
+    
+    <item>
+      <title>Key Definitions</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/key-definitions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/key-definitions/</guid>
+      <description>Key Definitions  Confidentiality: preserving authorised restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information. A loss of confidentiality is the unauthorised disclosure of information. Integrity: guarding against improper information modification or destruction, including ensuring information non-repudiation and authenticity. A loss of integrity is the unauthorised modification or destruction of information. Availability: ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.</description>
+    </item>
+    
+    <item>
+      <title>Message Authentication Code</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/message-authentication-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/message-authentication-code/</guid>
+      <description>Message Authentication Code A Message Authentication Code (MAC) is a function which protects the integrity and authenticity of a message \(M\), by producing a fixed-length value \(T = MAC(K, M)\), called the authentication tag. The value \(K\) is a shared secret key between the communicating parties.
+
+ Worked Example of MAC Suppose Alice wants to send a message \(M\) to Bob. First, they would need to share a common secret key \(K\), then Alice would send the message \(M\), along with its authentication tag, \(T = MAC(K, M)\) to Bob.</description>
+    </item>
+    
+    <item>
+      <title>One Time Pad</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/one-time-pad/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/one-time-pad/</guid>
+      <description>One-time pad A one-time pad is a cipher that guarantees perfect secrecy, even if an attacker has unlimited computing power, it is impossible to learn anything from the plaintext except for its length. The one-time pad takes a plaintext \(P\) and a random key \(K\), that is the same length as $P$ and produces a ciphertext \(C\), defined as \(C = P \oplus K\), where \(C\), \(P\) and \(K\) are bit strings of the same length and \(\oplus\) is the bitwise exclusive OR operator.</description>
+    </item>
+    
+    <item>
+      <title>Properties of Public Key Cryptography</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/properties/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/properties/</guid>
+      <description>Properties of public key cryptography Public Key Cryptography (PKC) is based on a mathematical object called a trapdoor function, a function that maps a number \(x\) to a number \(y\), such that it is easy to compute \(y\) from \(x\) using the public key. However, computing \(x\) from \(y\) is tough unless you know the private key.
+Think of \(x\) as a plaintext and \(y\) as a ciphertext then it is easy to compute \(C = f(K_E, P)\) if the public key \(K_E\) and the plaintext \(P\) is known.</description>
+    </item>
+    
+    <item>
+      <title>UNIX Password-Based Authentication</title>
+      <link>https://comp38411.jtang.dev/docs/entity-authentication/unix-password-based-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/entity-authentication/unix-password-based-authentication/</guid>
+      <description>UNIX Password-Based Authentication The UNIX password file contains a one-way function of user passwords, rather than plaintext passwords, for reasons such as theft and accidental disclosure. Each user password serves as the key to encrypt a known plaintext (64 zero-bits), and this yields a one-way function of the key since only the user knows the password.
+The one-way function, crypt() makes repeated use of DES, iterating the encipherment \(t = 25\) times.</description>
+    </item>
+    
+    <item>
+      <title>Data Encryption Standard</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/data-encryption-standard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/data-encryption-standard/</guid>
+      <description>Data Encryption Standard (DES) The DES algorithm is a 16 round Feistel cipher, which takes a 64-bit plaintext block and a 56-bit key as input. The DES algorithm was first published in 1977 as a US Federal Standard and is a de facto international standard for banking security. The DES consists of three main stages: the initial permutation, the round function, and the final permutation.
+The key scheduling algorithm for DES generates 48-bits subkeys, \(k_1, k_2, \dots, k_{16}\), from the 56-bit key \(K\).</description>
+    </item>
+    
+    <item>
+      <title>Key Distribution without using PKC</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/key-distribution-without-pkc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/key-distribution-without-pkc/</guid>
+      <description>Key Distribution without using PKC Suppose a group of \(n\) parties wish to establish pair-wise secure communication using symmetric-key cryptography. A naive solution would consist of each party exchanging a symmetric key with each of the other parties, so that we would require \(\frac{1}{2}n(n-1)\) keys. Clearly, this solution does not scale for a large and distributed group, as the number of keys becomes untenable for everyone.
+ Key Distribution Centre (KDC) Suppose that two parties \(A\) and \(B\) each have an encrypted connection to a third party \(C\), then \(C\) can deliver a key on the encrypted links to \(A\) and \(B\).</description>
+    </item>
+    
+    <item>
+      <title>Keyed Hashes</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/keyed-hashes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/keyed-hashes/</guid>
+      <description>Keyed Hashes One obvious way of producing a keyed hash function would be to use an unkeyed hash function with both a key and a message. One way to do this is to append the key to the message and apply the normal hash function, that is, \(Hash(M \; || \; K)\). This is known as secret-suffix construction.
+However, secret-suffix construction is vulnerable. Suppose we have a collision of the form \(Hash(M_1) = Hash(M_2)\), where \(M_1\) and \(M_2\) are two distinct messages, os possible different sizes.</description>
+    </item>
+    
+    <item>
+      <title>One Time Passwords</title>
+      <link>https://comp38411.jtang.dev/docs/entity-authentication/one-time-passwords/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/entity-authentication/one-time-passwords/</guid>
+      <description>One Time Passwords One Time Passwords (OTP), as the name suggests, are passwords which are only used once. OTPs are safe from eavesdroppers and subsequent impersonation.
+Some variations of OTP include:
+ Shared list of one-time passwords: The claimant and the verifier share a set of \(n\) passwords, each valid for a single authentication. A variation of this involves the use of a challenge-response table, whereby the claimant and the verifier share a table of matching challenge-response pairs - note that this technique is not the cryptography challenge-response protocol.</description>
+    </item>
+    
+    <item>
+      <title>Security Attacks</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/security-attacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/security-attacks/</guid>
+      <description>Security attacks A threat is a potential for violation of security, which exists when there is a circumstance, capability, action, or event that could breach security and cause harm. That is, a threat is a possible danger that might exploit a vulnerability. An attack is an assault on the system security that derives from an intelligent threat; that is, a creative act that is a deliberate attempt to evade security services and violate the security policy of a system.</description>
+    </item>
+    
+    <item>
+      <title>The RSA Algorithm</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-algorithm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-algorithm/</guid>
+      <description>The RSA algorithm The RSA scheme is a block cipher in which the plaintext and ciphertext are represented as integers in the range \([0, n - 1]\) for some large \(n\), typically of 1024 bits (or 309 decimal digits). The RSA algorithm can be broken down into three steps: key generation, encryption, and decryption.
+ Key Generation In RSA, the key pairs are generated as follows.
+ Choose two large prime numbers, \(p\), \(q\) with \(p \neq q\) Calculate \(n = pq\) and \(\varphi(n) = (p - 1)(q - 1)\) Choose \(e \in \mathbb{Z}\), \(gcd(\phi(n), e) = 1\), \(e \in (1, \phi(n))\) Calculate \(d \equiv e^{-1} \; (\text{mod} \; \varphi(n))\)  The private key consists of \(\{d, n\}\) and the public key consists of \(\{e, n\}\).</description>
+    </item>
+    
+    <item>
+      <title>Transposition</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/transpositions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/transpositions/</guid>
+      <description>Transpositions Another technique for mapping is achieved by performing some permutation on the plaintext letters. This technique is referred to as a transposition cipher. One way of doing this would be to write the message in a rectangle, row by row, and read the column message off, column by column, but permute the order of the columns. The order of the columns then becomes the key to the algorithm.
+Example</description>
+    </item>
+    
+    <item>
+      <title>Virtual Private Networks</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/virtual-private-networks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/virtual-private-networks/</guid>
+      <description>Virtual Private Networks A virtual private network (VPN) is a security solution which allows the provisioning of private network services over a public or shared infrastructure such as the Internet or service provider network. To achieve these private network services, VPNs make use of tunnelling, encryption, authentication, and access control technologies.
+ VPN Terminology A VPN tunnel encapsulates data of one protocol inside the data field of another protocol; headers are added to data to provide routing information to allow transmission across the Internet to reach its destination, to emulate a dedicated point-to-point link.</description>
+    </item>
+    
+    <item>
+      <title>X.509 Certificates</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-infrastructure/x509-certificates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-infrastructure/x509-certificates/</guid>
+      <description>X.509 Certificates X.509 Certificates are used to verify web servers, authenticate to a network service, or sign executable programs. In this chain of trust model, the CAs operate through a strictly hierarchical organisation in which the trust can only flow downwards. The CAs at the top of the hierarchy is known as Root CAs, and the CAs below the root is commonly referred to as Intermediate-Level CAs.
+
+The root certificate is issued by a CA, which might be a public organisation, such as Verisign, Comodo, and so on, or a private entity that issues certificates for use on internal networks.</description>
+    </item>
+    
+    <item>
+      <title>Achieving Security</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/achieving-security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/achieving-security/</guid>
+      <description>Achieving security Threat analysis Before we can put any security measures in place, we first need to identify what assets we wish to protect, the possible vulnerabilities in the system and what threats are posed upon us. To decide what assets to protect, we consider the value of such assets, the threats posed on these assets, their vulnerabilities and likelihood of exploitation. A function equation to calculate risk would be \(Risk = Vulnerability \times Threat \times Cost\).</description>
+    </item>
+    
+    <item>
+      <title>Advanced Encryption Standard</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/advanced-encryption-standard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/advanced-encryption-standard/</guid>
+      <description>Advanced Encryption Standard (AES) AES is the most-used cipher in the world, which was standardised by NIST in 2000 as a replacement for DES, and ever since it has become the world&#39;s de facto encryption standard. AES processes blocks of 128 bits using a secret key of 128, 192 or 256 bits, with the most common being the 128-bit key as it makes encryption slightly faster and the difference between a 128- and 256-bit security is redundant for most applications.</description>
+    </item>
+    
+    <item>
+      <title>Authentication Header</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/authentication-header/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/authentication-header/</guid>
+      <description>Authentication Header The figure below shows the structure of the Authentication Header (AH).
+
+ Next Header: the type of the header immediately following the AH. IP being 4, TCP being 6, UDP being 17, etc. Payload Length: the length of the AH in 32-bit word, minus the integer 2. Reserved: not used, and is defaulted to 0. SPI: a 32-bit value which establishes the Security Association for this packet. Sequence Number: a monotonically increasing number for each packet sent to prevent replay attacks.</description>
+    </item>
+    
+    <item>
+      <title>HMAC</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/hmac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/hmac/</guid>
+      <description>HMAC The hash-based MAC (HMAC) construction allows us to build a MAC from a hash function. HMAC uses a hash function, \(H\), to compute a MAC tag as follows:
+\[HMAC(K, M) = H((K^+ \oplus opad) \; || \; H((K^+ \oplus ipad) \; || \; M)\]
+where:
+ \(opad\) (outer padding) is the string \((5c5c \dots5c)\) that is as long as the block size of \(H\) \(ipad\) (inner padding) is the string \((36636\dots 36)\) that is as long as the block size of \(H\) \(K^+\) is the key padded out with 00 bytes to the block size of \(H\)</description>
+    </item>
+    
+    <item>
+      <title>Malleability of Textbook RSA Encryption</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/malleability-of-textbook-rsa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/malleability-of-textbook-rsa/</guid>
+      <description>Malleability of Textbook RSA Encryption Textbook RSA encryption refers to the RSA encryption scheme wherein the plaintext contains only the message you want to encrypt. For example, given a string \(x = x_1 x_2 x_3\), we first convert it to a number by concatenating the ASCII encodings of each of the three letters as a byte, say \(y_1 y_2 y_3\), which we might then encrypt by computing \((y_1 y_2 y_3)^e \; \text{mod} \; n\).</description>
+    </item>
+    
+    <item>
+      <title>Needham Schroeder Protocol</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/needham-schroeder-protocol/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/needham-schroeder-protocol/</guid>
+      <description>Needham-Schroeder Protocol Suppose a party \(A\) wishes to establish a secure communication link another party \(B\), and that both parties \(A\) and \(B\) possess master keys \(K_A\) and \(K_B\), respectively, for communicating with a shared key distribution centre. \(A\) engages in the Needham-Schroeder Protocol as follows:
+ \(A\) sends a request to the KDC for a session key intended for communicating with \(B\). The message sent by \(A\) to the KDC is encrypted using \(K_A\) and includes \(A\)&#39;s network address \((ID_A)\), \(B\)&#39;s network address \((ID_B)\) and a unique session identifier, known as a nonce, denoted by \(N_A\).</description>
+    </item>
+    
+    <item>
+      <title>Smart Card Based Authentication</title>
+      <link>https://comp38411.jtang.dev/docs/entity-authentication/smart-card-based-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/entity-authentication/smart-card-based-authentication/</guid>
+      <description>Smart Card Based Authentication A smart card is a physical authentication token that is carried around by a user. To prove one&#39;s identity as the authorised user of the token, entry of the correct PIN is usually required when the token is used. The PIN provides a second level of security as the smart card is subject to theft. For convenience, PINs are typically short, and to prevent exhaustive search through such a small key space, additional procedural constraints are necessary; for example, incorrect entry of several successive PINs may cause the card to be locked or deactivated.</description>
+    </item>
+    
+    <item>
+      <title>Stream Ciphers</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/stream-ciphers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/stream-ciphers/</guid>
+      <description>Stream ciphers A stream cipher is one that encrypts a digital data stream one bit or one byte at a time. Stream ciphers generate pseudorandom bits, a bit like how the one-time pad works, as explained in the previous section. Stream ciphers take two input values, a key \(K\) and a nonce \(N\), the key should be secret and is usually 128 or 256 bits. A nonce is a number that number only used once, commonly referred to as the initial value (\(IV\)) in the context of stream ciphers, which does not need to be secret, but it should be unique for each key and is usually between 64 and 128 bits.</description>
+    </item>
+    
+    <item>
+      <title>Attack Surface</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/attack-surfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/attack-surfaces/</guid>
+      <description>Attack Surfaces and Attack Trees Attack surfaces An attack surface consists of reachable and exploitable vulnerabilities in a system and can be classified into three categories:
+ Network attack surface refers to vulnerabilities over an enterprise network or the internet. Examples of this include network protocol vulnerabilities, such as those used for a DDoS attack, disruption of communication links and various forms of intruder attacks. Software attack surface refers to vulnerabilities in application, utility, or operating system code.</description>
+    </item>
+    
+    <item>
+      <title>Authenticated Encryption</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-encryption/</guid>
+      <description>Authenticated Encryption Authenticated encryption (AE) algorithms simultaneously protect the confidentiality and authenticity of messages. There are four conventional approaches to providing both confidentiality and encryption for a message \(M\).
+ Hash-then-encrypt For hash-then-encrypt, we first compute the hash of the plaintext message, \(h = H(M)\), then encrypt the message and the hash together, \(C = E(K, (M \; || \; h))\). The sender transmits \(C\), and upon receipt, the recipient first decrypts \(C\) by computing \(M \; || \; h = D(K, C)\).</description>
+    </item>
+    
+    <item>
+      <title>Encapsulating Security Payload</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/encapsulating-security-payload/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/encapsulating-security-payload/</guid>
+      <description>Encapsulating Security Payload The Encapsulating Security Payload (ESP) protocol is used for providing encryption services in IPSec. While ESP may be used to provide the same services as the AH header, its main purpose is to provide confidentiality through encryption.
+The figure below shows the structure of the Encapsulating Security Payload (ESP).
+
+ SPI: a 32-bit value which establishes the Security Association for this packet. Sequence Number: a monotonically increasing number for each packet sent to prevent replay attacks.</description>
+    </item>
+    
+    <item>
+      <title>How Secure?</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/how-secure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/how-secure/</guid>
+      <description>How secure? Unconditional security An encryption scheme is said to be unconditionally secure if the ciphertext generated by the scheme does not contain enough information to determine the corresponding plaintext uniquely, no matter how much is available. In other words, it is impossible to defeat the system regardless of how much time and computational power is available, simply because the required information is not there.
+ Computational security The only known scheme to be unconditionally secure is the one-time pad, which is impractical in most applications.</description>
+    </item>
+    
+    <item>
+      <title>Key Distribution using PKC</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/key-distribution-using-pkc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/key-distribution-using-pkc/</guid>
+      <description>Key Distribution using PKC In this section, we will use \(\{X\}S_A\) to denote the signing of \(X\) by \(A\), that is, \(\{X\}S_A = X \; || \; E_{KR_A}(H(X))\).
+ Secret key distribution with confidentiality and authentication 
+ \(A\) sends \(E(PU_B, N_1 \; || \; A)\) to \(B\), that is, a nonce \(N_1\) and \(A\)&#39;s identifier, encrypted using \(B\)&#39;s public key. \(B\) sends \(E(PU_A, N_1 \; || \; N_2)\) to \(A\), where \(N_2\) is a nonce generated by \(B\).</description>
+    </item>
+    
+    <item>
+      <title>Modes of Operation</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/modes-of-operation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/modes-of-operation/</guid>
+      <description>Modes of operation In this section, we will discuss the main modes of operations used by block ciphers, their security and function properties.
+ Electronic Codebook (ECB) Mode Electronic codebook mode is the simplest of block cipher encryption modes. ECB takes plaintext blocks \(P_1, P_2, \dots, P_N\) and processes each one independently by \(C_1 = E(K, P_1), C_2 = E(K, P_2)\), and so on. Although a simple operation, it is extremely insecure.</description>
+    </item>
+    
+    <item>
+      <title>Using RSA for encryption</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-for-encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/rsa-for-encryption/</guid>
+      <description>Typically, RSA is used in combination with a symmetric encryption scheme (such as AES), where RSA is used to encrypt a symmetric key which is then used to encrypt a message with a symmetric cipher, such as AES.
+As discussed in the previous section, the naive textbook application of RSA is insecure, due to malleability. In order to make RSA ciphertexts nonmalleable, the ciphertext should consist of some additional data called padding, in addition to the message data.</description>
+    </item>
+    
+    <item>
+      <title>X.509 Certificate Based Authentication</title>
+      <link>https://comp38411.jtang.dev/docs/entity-authentication/x509-certificate-based-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/entity-authentication/x509-certificate-based-authentication/</guid>
+      <description>X.509 Certificate Based Authentication X.509 defines a framework which enables the validation of digital signatures. We can achieve mutual authentication using challenge-response authentication along with digital signatures and digital certificates.
+ X.509 Authentication using Public Keys 
+ \(A\) sends \(E_{KU_B}(r_A)\) to \(B\), where \(r_A\) is a nonce generated by \(A\). \(B\) sends \(r_A\) and \(E_{KU_A}(r_B)\) to \(A\), where \(r_B\) is a nonce generated by \(B\). As only \(B\) can decrypt the first message, if \(B\) is able to send \(r_A\) back to \(A\), this authenticates \(B\) to \(A\).</description>
+    </item>
+    
+    <item>
+      <title>Anti-Replay</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/anti-replay/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/anti-replay/</guid>
+      <description>Anti-Replay Recall that a replay attack is one in which an attacker obtains a copy of an authenticated packet and later transmits it to the intended destination. The Sequence Number field to designed to thwart such attacks.
+ Outbound Processing Upon establishing an SA, the sender initialises a sequence number counter to 0. Each time a packet is sent on this SA, the sender increments the counter and populates the Sequence Number field with this value; thus, the first value to be used is 1.</description>
+    </item>
+    
+    <item>
+      <title>Authenticated Ciphers</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-ciphers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/authenticated-ciphers/</guid>
+      <description>Authenticated Ciphers Authenticated ciphers are similar to the cipher and MAC combinations; they work like normal ciphers except that they return an authentication tag together with the ciphertext. In symbols, authenticated cipher encryption is denoted \(AE(K, P) = (C, T)\) and decryption is denoted \(AD(K, C, T) = P\).
+Authenticated decryption will return a plaintext \(P\), given that the ciphertext and authentication tag are both valid; otherwise, it will return an error to prevent the processing of a possibly forged plaintext.</description>
+    </item>
+    
+    <item>
+      <title>Breaking Textbook RSA Signatures</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/breaking-textbook-rsa-signatures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/breaking-textbook-rsa-signatures/</guid>
+      <description>Breaking Textbook RSA Signatures Textbook RSA signature refers to the method in which a message, \(x\), is signed by directly computing \(y \equiv x^d \; \text{mod} \; n\), where \(x \in [0, n - 1]\). Similar to textbook encryption, textbook RSA signing is simple to implement but also insecure against several attacks.
+ Trivial forgery One attack on textbook RSA signing involves trivial forgery. Notice that \(0^d \equiv 0 \; \text{mod} \; n\), \(1^d \equiv 1 \; \text{mod} \; n\) and \((n - 1)^d \equiv 0 \; \text{mod} \; n - 1\), so an attacker can forge signatures for \(0\), \(1\), or \(n - 1\), without the knowledge of the private key \(d\).</description>
+    </item>
+    
+    <item>
+      <title>Comparison of Key Establishment Protocols</title>
+      <link>https://comp38411.jtang.dev/docs/key-management/comparison-of-key-establishment-protocols/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/key-management/comparison-of-key-establishment-protocols/</guid>
+      <description>Comparison of Secret Key Establishment Protocols    Protocol Third Party Timestamps Entity Authentication Messages     Diffie-Hellman No No None 2   Needham-Schroeder KDC (online) No Symmetric encryption 5   Kerberos KDC (online) Yes Symmetric encryption 4   X.509 (2 Pass) CA (offline) Yes Mutual 2   X.509 (3 Pass) CA (offline) No, nonces Mutual 3    </description>
+    </item>
+    
+    <item>
+      <title>Cryptanalysis</title>
+      <link>https://comp38411.jtang.dev/docs/introduction-to-cryptography/cryptanalysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction-to-cryptography/cryptanalysis/</guid>
+      <description>Cryptanalysis Usually, the target of an encryption system is recovering the key in use rather than only recovering the plaintext of a single ciphertext. Cryptanalysis refers to attack techniques which rely on the nature of the algorithm, in addition to perhaps some knowledge of the general characteristics of the plaintext or even some sample plaintext-ciphertext pairs.
+The type of cryptanalytic attack used depends on the amount of information known to the cryptanalyst.</description>
+    </item>
+    
+    <item>
+      <title>Encrypting any message in CBC mode</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/</guid>
+      <description>Encrypting any message in CBC mode In this section, we will look at how to process a plaintext whose length is not a multiple of the block length. For example, how would we encrypt an 18-byte plaintext with AES-CBC when blocks are 16 bytes? We will look at techniques to deal with this problem.
+ Padding Padding is a technique that allows you to encrypt a message of any length, by making the ciphertext slightly longer than the plaintext.</description>
+    </item>
+    
+    <item>
+      <title>Security Models</title>
+      <link>https://comp38411.jtang.dev/docs/introduction/security-models/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/introduction/security-models/</guid>
+      <description>Security models Distributed system security model 
+In a distributed system security model, there is a wide range of security threats, some of which include:
+ How does the server know who is making the request? Clients should be assigned a unique identifier so that they can be identified, which is useful for logging requests Can the server be certain about the identity of the principal behind the invocation? How can we assure that the client is whom they claim to be?</description>
+    </item>
+    
+    <item>
+      <title>Attacks of Block Ciphers</title>
+      <link>https://comp38411.jtang.dev/docs/conventional-cryptography/attacks-on-block-ciphers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/conventional-cryptography/attacks-on-block-ciphers/</guid>
+      <description>Attacks on block ciphers Meet-in-the-middle attacks (not to be confused with man-in-the-middle attacks) and padding oracle attacks are two common techniques used to attack block ciphers.
+ Meet-in-the-middle attacks Let us take double DES for example. Suppose we have \(P\) and \(C=E(K_2, E(K_1, P))\) with two unknown 56-bit keys, \(K_1\) and \(K_2\).
+ Build a key-value table with \(2^{56}\) entries of \(E(K_1, P)\), where \(E\) is the DES encryption function, and \(K_1\) is the value stored.</description>
+    </item>
+    
+    <item>
+      <title>Breaking Textbook RSA Signatures</title>
+      <link>https://comp38411.jtang.dev/docs/public-key-cryptography/hybrid-cryptosystems/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/public-key-cryptography/hybrid-cryptosystems/</guid>
+      <description>Hybrid cryptosystems Symmetric and asymmetric ciphers each have their advantages and disadvantages. Asymmetric ciphers such as public key ciphers, are significantly slower than symmetric ciphers. For example, DES is around 1000 faster than RSA in hardware, and 100 times faster in software. With symmetric ciphers, all involved parties have to exchange the key used to encrypt the data before they can decrypt it, and cannot provide non-repudiation without the involvement of a trusted third party.</description>
+    </item>
+    
+    <item>
+      <title>Combining Security Associations</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/combining-security-associations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/combining-security-associations/</guid>
+      <description>Combining Security Associations An individual SA can implement either the AH or ESP protocol but not both. Sometimes, we may wish to employ multiple SAs on the same traffic flow to achieve some desired IPSec services. We refer to a sequence of SAs through which traffic must be processed to provide the desired set of IPSec services as a security association bundle (SA bundle).
+Security Associations can be combined into bundles in two ways:</description>
+    </item>
+    
+    <item>
+      <title>Counter with CBC Mode</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/counter-with-cbc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/counter-with-cbc/</guid>
+      <description>Cipher-Based Message Authentication Code Cipher-Based Message Authentication Code (CMAC) is a MAC based on block ciphers. We first define the operation of CMAC when the message is an integer multiple \(n\) of the cipher block length \(b\). For AES, \(b = 128\), and for triple DES, \(b = 64\). First, the message is divided into \(n\) blocks, \((M_1, M_2, \dots, M_n)\). The algorithm makes use of a \(k\)-bit encryption key \(K\) and a \(b\)-bit constant, \(K_1\).</description>
+    </item>
+    
+    <item>
+      <title>Comparison of IP Level Authentication</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/comparison-of-ip-level-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/comparison-of-ip-level-authentication/</guid>
+      <description>Comparison of IP Level Authentication    Feature AH ESP ESP with authentication     Access control Yes Yes Yes   Connectionless integrity Yes No Yes   Data origin authentication Yes No Yes   Rejection of replayed packets Yes No Yes   Confidentiality No Yes Yes   Limited traffic flow confidentiality No Yes Yes    </description>
+    </item>
+    
+    <item>
+      <title>Galois Counter Mode</title>
+      <link>https://comp38411.jtang.dev/docs/mac-and-hash-functions/galois-counter-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/mac-and-hash-functions/galois-counter-mode/</guid>
+      <description>Galois Counter Mode AES-GCM is the most widely used authenticated cipher, which as the name suggests, is based on the AES algorithm, and the Galois counter mode. GCM makes use of two functions: \(GHASH\), which is a keyed hash function, and \(GCTR\), which is essentially the CTR mode with the counters determined by a simple increment by one operation.
+ GHASH \(GHASH_H(X)\) takes two inputs; the hash key \(H\) and a bit string \(X\) such that \(len(X) = 128m\) for some \(m \in \mathbb{Z}, m  0\), and produces a 128-bit MAC value.</description>
+    </item>
+    
+    <item>
+      <title>Comparison of Transport Mode and Tunnel Mode</title>
+      <link>https://comp38411.jtang.dev/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://comp38411.jtang.dev/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/</guid>
+      <description>Comparison of Transport Mode and Tunnel Mode     Transport Mode Tunnel Mode     AH Authenticates IP payload and selected portions of IP header Authenticates entire inner IP packet and selected portions of outer IP   ESP Encrypts IP payload Encrypts entire inner IP packet   ESP with authentication Encrypts IP payload. Authenticates IP payload but not IP header Encrypts and authenticates entire inner IP packet    </description>
+    </item>
+    
+  </channel>
+</rss>

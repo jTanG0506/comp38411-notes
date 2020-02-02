@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Keyed Hashes"><meta property="og:title" content="Keyed Hashes" />
+<meta property="og:description" content="Keyed Hashes One obvious way of producing a keyed hash function would be to use an unkeyed hash function with both a key and a message. One way to do this is to append the key to the message and apply the normal hash function, that is, \(Hash(M \; || \; K)\). This is known as secret-suffix construction.
+However, secret-suffix construction is vulnerable. Suppose we have a collision of the form \(Hash(M_1) = Hash(M_2)\), where \(M_1\) and \(M_2\) are two distinct messages, os possible different sizes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/mac-and-hash-functions/keyed-hashes/" />
+
+<title>Keyed Hashes | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/"class=active>Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Keyed Hashes</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="keyed-hashes">Keyed Hashes</h2>
+
+<p>One obvious way of producing a keyed hash function would be to use an <em>unkeyed</em> hash function with both a key and a message. One way to do this is to append the key to the message and apply the normal hash function, that is, <span  class="math">\(Hash(M \; || \; K)\)</span>. This is known as <strong>secret-suffix</strong> construction.</p>
+
+<p>However, secret-suffix construction is vulnerable. Suppose we have a collision of the form <span  class="math">\(Hash(M_1) = Hash(M_2)\)</span>, where <span  class="math">\(M_1\)</span> and <span  class="math">\(M_2\)</span> are two distinct messages, os possible different sizes. This implies that <span  class="math">\(Hash(M_1 \; || \; K)\)</span> and <span  class="math">\(Hash(M_2 \; || \; K)\)</span> will be equal too, as internally <span  class="math">\(K\)</span> will be processed based on the data hashed previously, namely <span  class="math">\(Hash(M_1)\)</span>, equal to <span  class="math">\(Hash(M_2)\)</span>.</p>
+
+<p>To exploit this property, an attack would merely:</p>
+
+<ul>
+<li>Find two colliding messages, <span  class="math">\(M_1\)</span> and <span  class="math">\(M_2\)</span></li>
+<li>Request the MAC tag of <span  class="math">\(M_1\)</span>, <span  class="math">\(Hash(M_1 \; || \; K)\)</span></li>
+<li>Guess that <span  class="math">\(Hash(M_2 \; || \; K)\)</span> is the same, thus forging a valid tag for <span  class="math">\(M_2\)</span></li>
+</ul>
+
+<p>Alternatively, we could use <strong>secret-prefix</strong> construction, which prepends the key to the start of the message; however, this approach is vulnerable to the length-extension attack.</p>
+
+<hr>
+
+<h3 id="comparison-of-secure-hash-algorithm">Comparison of Secure Hash Algorithm</h3>
+
+<p>Secure Hash Algorithm (SHA) is a family of NIST-approved cryptographic hash functions. SHA-1 is a successor to MD5, which is still used in many legacy applications but has been cracked in 2017, and as a result, NIST official withdrew its approval for applications that need to be compliant with U.S. Government standards.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Algorithm</th>
+<th align="center">Max Message Size (bits)</th>
+<th align="center">Block Size (bits)</th>
+<th align="center">Word Size (bits)</th>
+<th align="center">Digest Size (bits)</th>
+<th align="center">Security (bits)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">SHA-1</td>
+<td align="center"><span  class="math">\(2^{64}\)</span></td>
+<td align="center">512</td>
+<td align="center">32</td>
+<td align="center">160</td>
+<td align="center">80</td>
+</tr>
+
+<tr>
+<td align="center">SHA-256</td>
+<td align="center"><span  class="math">\(2^{64}\)</span></td>
+<td align="center">512</td>
+<td align="center">32</td>
+<td align="center">256</td>
+<td align="center">128</td>
+</tr>
+
+<tr>
+<td align="center">SHA-384</td>
+<td align="center"><span  class="math">\(2^{128}\)</span></td>
+<td align="center">1024</td>
+<td align="center">64</td>
+<td align="center">384</td>
+<td align="center">192</td>
+</tr>
+
+<tr>
+<td align="center">SHA-512</td>
+<td align="center"><span  class="math">\(2^{128}\)</span></td>
+<td align="center">1024</td>
+<td align="center">64</td>
+<td align="center">512</td>
+<td align="center">25</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>The <strong>maximum message size</strong> is the upper bound on the size of the message that the algorithm can handle.</li>
+<li>The <strong>block size</strong> is the size of each bit block that the message is divided into.</li>
+<li>The <strong>word size</strong> is the size of the integral unit of operation for internal transformations.</li>
+<li>The <strong>digest size</strong> is the size of the digest produced.</li>
+<li>The <strong>security</strong> refers to the number of messages that would need to be generated before two can be found with the same digest with a probability of 0.5.</li>
+</ul>
+
+<p>We have seen that, for a secure digest function that produces an <span  class="math">\(n\)</span>-bit digest, one would need to generate <span  class="math">\(2^{n/2}\)</span> messages in order to discover a collision with a probability of 0.5. As a result, the entries in the <strong>Security</strong> column is half of the corresponding entry in the <strong>Digest Size</strong> column.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

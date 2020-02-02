@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="One Time Passwords"><meta property="og:title" content="One Time Passwords" />
+<meta property="og:description" content="One Time Passwords One Time Passwords (OTP), as the name suggests, are passwords which are only used once. OTPs are safe from eavesdroppers and subsequent impersonation.
+Some variations of OTP include:
+ Shared list of one-time passwords: The claimant and the verifier share a set of \(n\) passwords, each valid for a single authentication. A variation of this involves the use of a challenge-response table, whereby the claimant and the verifier share a table of matching challenge-response pairs - note that this technique is not the cryptography challenge-response protocol." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/entity-authentication/one-time-passwords/" />
+
+<title>One Time Passwords | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/"class=active>One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>One Time Passwords</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="one-time-passwords">One Time Passwords</h2>
+
+<p><strong>One Time Passwords</strong> (OTP), as the name suggests, are passwords which are only used once. OTPs are safe from eavesdroppers and subsequent impersonation.</p>
+
+<p>Some variations of OTP include:</p>
+
+<ol>
+<li><strong>Shared list of one-time passwords</strong>: The claimant and the verifier share a set of <span  class="math">\(n\)</span> passwords, each valid for a single authentication. A variation of this involves the use of a <em>challenge-response table</em>, whereby the claimant and the verifier share a table of matching challenge-response pairs - note that this technique is not the cryptography challenge-response protocol.</li>
+<li><strong>Sequentially updated one-time passwords</strong>: The claimant and the verifier start by sharing a single secret. During authentication using password <span  class="math">\(i\)</span>, the claimant creates and transmits a new password <span  class="math">\((i + 1)\)</span> encrypted under a key derived from password <span  class="math">\(i\)</span>.</li>
+<li><strong>OTP sequences based on a one-way function</strong>: This method can be viewed as a challenge-response protocol where the challenge is implicitly defined by the current position within the password sequence. An example of this approach is Lamport's OTP scheme.</li>
+</ol>
+
+<hr>
+
+<h3 id="lamports-otp-scheme">Lamport's OTP Scheme</h3>
+
+<p>In Lamport's OTP Scheme, the claimant begins with a secret <span  class="math">\(w\)</span>. Let <span  class="math">\(H\)</span> be a one-way function, which defines the password sequence: <span  class="math">\(w, H(w), H(H(w)), \dots, H^t(w)\)</span>. The password for the <span  class="math">\(i^{th}\)</span> identification session is defined to be <span  class="math">\(w_i = H^{t - i}(w)\)</span>.</p>
+
+<ol>
+<li><strong>Setup</strong>: The claimant <span  class="math">\(A\)</span> begins with a secret <span  class="math">\(w\)</span>. Let <span  class="math">\(H\)</span> be a one-way function. Fix <span  class="math">\(t\)</span>, the number of identifications allowed. <span  class="math">\(A\)</span> transfers the initial shared secret <span  class="math">\(w_0 = H^t(w)\)</span> to the verifier <span  class="math">\(B\)</span>, in a secure manner. <span  class="math">\(B\)</span> initialises its counter for <span  class="math">\(A\)</span> to <span  class="math">\(i_A = 1\)</span>.</li>
+<li><strong>Identification</strong>: For session <span  class="math">\(i\)</span>, <span  class="math">\(A\)</span> computes <span  class="math">\(w_i = H^{t - i}(w)\)</span>, either from <span  class="math">\(w\)</span> itself, or from an appropriate immediate value, and transmits this value to <span  class="math">\(B\)</span>. <span  class="math">\(B\)</span> checks that <span  class="math">\(i = i_A\)</span> and that the received password <span  class="math">\(w_i\)</span> satisfies <span  class="math">\(H(w_i) = w_{i - 1}\)</span>. If both checks succeed, <span  class="math">\(B\)</span> accepts the password, and increments <span  class="math">\(i_A\)</span> by one and saves <span  class="math">\(w_i\)</span> for the next session verification.</li>
+</ol>
+
+<hr>
+
+<h3 id="hashingbased-otp">Hashing-Based OTP</h3>
+
+<p>Suppose the claimant and the verifier share a password <span  class="math">\(P\)</span>, and let <span  class="math">\(H\)</span> be an agreed hash function. For authentication, the claimant would send <span  class="math">\(r \; || \; H(r, P)\)</span> to the verifier, which computes the hash of the received value of <span  class="math">\(r\)</span> and its local copy of <span  class="math">\(P\)</span>, and compares it against the received hash value. <span  class="math">\(r\)</span> should be a time-variant parameter, such as a sequence number or timestamp, to avoid replay attacks.</p>
+
+<hr>
+
+<h3 id="challengehandshake-authentication-protocol">Challenge-Handshake Authentication Protocol</h3>
+
+<p>Challenge-Handshake Authentication Protocol (CHAP) is an authentication scheme used by Point-to-Point Protocol (PPP) servers to validate the identity of remote clients.</p>
+
+<p><figure><img src="/docs/figures/chap.png" alt="CHAP"></figure></p>
+
+<p>For this protocol, the server and user are assumed to have a shared symmetrical key <span  class="math">\(K\)</span>. To achieve authentication, the server sends the user a random number, which acts as the challenge message. The user concatenates the random number and the shared key <span  class="math">\(K\)</span>, computes the hash and sends it to the server. This hash proves that the user knows the value of <span  class="math">\(K\)</span>, without revealing the value of <span  class="math">\(K\)</span> - this is known as a zero-knowledge-based protocol.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

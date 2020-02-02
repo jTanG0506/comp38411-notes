@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Block Ciphers"><meta property="og:title" content="Block Ciphers" />
+<meta property="og:description" content="Block ciphers A block cipher consists of an algorithm and a decryption algorithm.
+ the encryption algorithm \(E\), which takes a key \(K\) and a plaintext block \(P\) and produces a ciphertext block, \(C\). We write this as \(C = E(K, P)\). the decryption algorithm \(D\) is the inverse of the encryption algorithm and decrypts a ciphertext \(C\) to the origin plaintext \(P\). We write this as \(P = D(K, C)\)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/conventional-cryptography/block-ciphers/" />
+
+<title>Block Ciphers | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/"class=active>Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Block Ciphers</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="block-ciphers">Block ciphers</h2>
+
+<p>A block cipher consists of an algorithm and a decryption algorithm.</p>
+
+<ol>
+<li>the <strong>encryption algorithm</strong> <span  class="math">\(E\)</span>, which takes a key <span  class="math">\(K\)</span> and a plaintext block <span  class="math">\(P\)</span> and produces a ciphertext block, <span  class="math">\(C\)</span>. We write this as <span  class="math">\(C = E(K, P)\)</span>.</li>
+<li>the <strong>decryption algorithm</strong> <span  class="math">\(D\)</span> is the inverse of the encryption algorithm and decrypts a ciphertext <span  class="math">\(C\)</span> to the origin plaintext <span  class="math">\(P\)</span>. We write this as <span  class="math">\(P = D(K, C)\)</span>.</li>
+</ol>
+
+<p><figure><img src="/docs/figures/block-cipher.png" alt="Block Ciphers"></figure></p>
+
+<hr>
+
+<h3 id="security-goals">Security goals</h3>
+
+<p>There are three main properties that an encryption algorithm should aim to satisfy:</p>
+
+<ol>
+<li>completeness: every bit of the output should depend on every bit of the input and every bit of the key.</li>
+<li>the avalanche effect: a desirable property of any encryption algorithm is that a small change (one bit, for example) in either the plaintext or the key should produce a significant change in the ciphertext.</li>
+<li>statistical independence: attackers should be unable to discover any pattern in the input and output values of a block cipher, i.e. they appear to be statistically independent.</li>
+</ol>
+
+<hr>
+
+<h3 id="block-size">Block size</h3>
+
+<p>The block size and the key size are the two values which characterise a block cipher and security depends on both these values. Most block ciphers have either 64-bit or 128-bit blocks. For one thing, blocks must not be too large in order to minimise the length of the ciphertext and the memory footprint. With regard to the length of ciphertext, block ciphers process blocks, not bits. This means that in order to encrypt a 32-bit message when blocks are 128 bits, you will first need to convert the message into a 128-bit block, and only then will the block cipher be able to process it and return a 128-bit ciphertext. The wider the blocks, the longer this overhead.</p>
+
+<p>As for the <strong>memory footprint</strong>, in order to process a 128-bit block, you need at least 128 bits of memory. This is small enough to fit into the registers of most CPUs; however, larger blocks can have a noticeable impact on the cost and performance of implementations.</p>
+
+<hr>
+
+<h3 id="constructing-block-ciphers">Constructing block ciphers</h3>
+
+<p>A block cipher consists of a repetition of <strong>rounds</strong>, a short sequence of operations, known as <strong>round functions</strong>, that are weak on its own but strong in number. Two common techniques used to construct a round are substitution-permutation networks (as in AES) and Feistel schemes (as in DES).</p>
+
+<p>Computing a block cipher boils down to computing a sequence of rounds. For example, a block cipher with three rounds encrypts a plaintext by computing <span  class="math">\(C = R_3(R_2(R_1(P)))\)</span>, where <span  class="math">\(R_1, R_2\)</span> and <span  class="math">\(R_3\)</span> are the rounds and <span  class="math">\(P\)</span> is the plaintext. The round functions <span  class="math">\(R_1, R_2\)</span>, and so on - are usually identical algorithms but a value called the <strong>round key</strong> parameterises them. Two round functions with two distinct round keys will behave differently, and therefore will produce distinct outputs if fed with the same input.</p>
+
+<p>Round keys are keys derived from the main key, <span  class="math">\(K\)</span>, using an algorithm called the <strong>key schedule</strong>. Note that round keys should always be different from each other in every round.</p>
+
+<p>Recall that <strong>confusion</strong> refers to the input (plaintext and encryption key) undergoing complex transformations and that <em>diffusion</em> means that these transformations depend equally on all bits of input. For a block cipher, confusion and diffusion take the form of substitution and permutation operations. Substitution often appears in the form of <strong>S-boxes</strong>, or <strong>substitution boxes</strong>, which are small lookup tables that transform chunks of 4 or 8 bits.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

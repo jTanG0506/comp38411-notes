@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="X.509 Certificates"><meta property="og:title" content="X.509 Certificates" />
+<meta property="og:description" content="X.509 Certificates X.509 Certificates are used to verify web servers, authenticate to a network service, or sign executable programs. In this chain of trust model, the CAs operate through a strictly hierarchical organisation in which the trust can only flow downwards. The CAs at the top of the hierarchy is known as Root CAs, and the CAs below the root is commonly referred to as Intermediate-Level CAs.
+
+The root certificate is issued by a CA, which might be a public organisation, such as Verisign, Comodo, and so on, or a private entity that issues certificates for use on internal networks." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/public-key-infrastructure/x509-certificates/" />
+
+<title>X.509 Certificates | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/"class=active>X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>X.509 Certificates</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="x509-certificates">X.509 Certificates</h2>
+
+<p>X.509 Certificates are used to verify web servers, authenticate to a network service, or sign executable programs. In this <em>chain of trust</em> model, the CAs operate through a strictly hierarchical organisation in which the trust can only flow downwards. The CAs at the top of the hierarchy is known as <strong>Root CAs</strong>, and the CAs below the root is commonly referred to as <strong>Intermediate-Level CAs</strong>.</p>
+
+<p><figure><img src="/docs/figures/chain-of-trust.png" alt="Chain Of Trust"></figure></p>
+
+<p>The root certificate is issued by a CA, which might be a public organisation, such as Verisign, Comodo, and so on, or a private entity that issues certificates for use on internal networks. By definition, the root certificate cannot be signed by another certificate, so instead, the private key associated with the certificate's public key is used to sign itself, and this is known as a <strong>self-signed certificate</strong>.</p>
+
+<p>There are three kinds of certificates, depending on the level of identity assurance and authentication that was carried out with regard to the applicant organisation.</p>
+
+<ul>
+<li><strong>Extended Validation (EV)</strong>: the highest level certificates that are issued after a rigorous identity verification processes for establishing the legitimacy of the applicant organisation. These certificates can take days for a CA to issue and are the most expensive.</li>
+<li><strong>Organisation Validation (OV)</strong>: the next lower level certificates, which usually verify the existence of the organisation, the domain name, and optionally a follow-up phone call from the CA.</li>
+<li><strong>Domain Validation (DV)</strong>: the lowest level of identity and domain validation, where the only check that is made before such a certificate is issued is that the applicant has the right to use a specific domain name. These certificates are usually issued in a matter of minutes and are the least expensive.</li>
+</ul>
+
+<hr>
+
+<h3 id="x509-certificate-format">X.509 Certificate Format</h3>
+
+<p><figure><img src="/docs/figures/x509-certificate.png" alt="X509 Certificate"></figure></p>
+
+<p>The different fields of the X.509 certificate are as follows:</p>
+
+<ul>
+<li><strong>Version Number</strong>: the version of X.509 standard to which the certificate corresponds.</li>
+<li><strong>Serial Number</strong>: a unique serial number assigned to the certificate by the CA.</li>
+<li><strong>Signature Algorithm ID</strong>: the name of the digital signature algorithm used to sign the certificate. For example, RSA or DSA.</li>
+<li><strong>Issuer</strong>: name of the Certificate Authority that issued this certificate.</li>
+<li><strong>Validity Period</strong>: the period during which the certificate is valid, defined by two date times, not-before and not-after.</li>
+<li><strong>Subject</strong>: the identifier for the individual or organisation to which the certificate was issued.</li>
+<li><strong>Subject Public Key</strong>: the public key that is meant to be authenticated by this certificate. This field also names the algorithm used for public-key generation.</li>
+<li><strong>Issuer Unique Identifier</strong>: allows multiple CA's to operate as logically a single CA.</li>
+<li><strong>Subject Unique Identifier</strong>: allows multiple certificate holders to act as a single logical entity.</li>
+<li><strong>Extensions</strong>: allows a CA to associate additional private information to a certificate, such as ways to manage certification hierarchy and certification revocation lists.</li>
+<li><strong>Signature</strong>: the digital signature by the issuing CA for the certificate. This signature is obtained by computing a message digest of the above fields with a hashing algorithm and then encrypting it with the CA's private key.</li>
+</ul>
+
+<p>The authenticity of the contents of the certificate can be verified by using the CA's public key to retrieve the message digest and then by comparing this digest with the one computed from the rest of the fields.</p>
+
+<h4 id="certificate-notation">Certificate Notation</h4>
+
+<p>The X.509 standard uses the following notation to define a certificate</p>
+
+<p><span  class="math">\[CA \; \langle \langle A \rangle \rangle = CA \; \{V, SN, AI, CA, UCA, A, UA, Ap, T^A\}\]</span></p>
+
+<p>where</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+CA \; \langle \langle A \rangle \rangle & = \; \text{the certificate of user A issued by certification authority CA}\\
+CA \; \{I\} & = \; \text{the signing of I by CA, consisting of I with the encrypted hash code appended}\\
+V & = \; \text{version of the certificate}\\
+SN & = \; \text{serial number of the certificate}\\
+AI & = \; \text{identifier of the algorithm used to sign the certificate}\\
+CA & = \; \text{name of the certificate authority}\\
+UCA & = \; \text{optional unique identifier of the CA}\\
+A & = \; \text{name of user A}\\
+UA & = \; \text{optional unique identifier of the user A}\\
+Ap & = \; \text{public key of user A}\\
+T^A & = \; \text{period of validity of the certificate}
+\end{aligned}
+\]</span></p>
+
+<hr>
+
+<h3 id="certificate-revocation-lists">Certificate Revocation Lists</h3>
+
+<p>Suppose we wish to revoke the validity of a certificate before it is expired, just like when you lose your bank card and wish to block the card from further use. Certificates that we wish to revoke before their expiration date are added to a Certificate Revocation List, and when a user receives a certificate in a message, the user must check if the certificate has been revoked.</p>
+
+<p>Some of the reasons we may wish to revoke a certificate before it expires include:</p>
+
+<ol>
+<li>The user's private key has been compromised</li>
+<li>The user is no longer certified by this CA</li>
+<li>The CA's certificate has been compromised</li>
+</ol>
+
+<p><figure><img src="/docs/figures/certificate-revocation-list.png" alt="Certificate Revocation List"></figure></p>
+
+<p>When a user receives a certificate in a message, the user must ensure that it has a valid CA signature, has not expired, and is not listed in the CA's most recent CRL. To avoid the delays and costs of checking the CRL directory each time a certificate is received, it is common to maintain a local cache of certificates and revoked certificates lists.</p>
+
+<hr>
+
+<h3 id="verifying-a-certificate-chain">Verifying a Certificate Chain</h3>
+
+<p>To verify a certificate, we follow the issuance chain in a bottom-up manner, back up to the root certificate, ensuring at each step that every certificate has a valid signature, is not expired, and has not been revoked. This approach for establishing trust assumes that the root level CA must be trusted implicitly. The status of root CAs is verified annually by designed agencies; for example, Comodo's annual status as a root CA is verified annually by KPMG.</p>
+
+<p>In the example below, user A can acquire the following certificates from the directory to establish a certification path to C:</p>
+
+<p><span  class="math">\[B \langle \langle F \rangle \rangle \; F \langle \langle X \rangle \rangle \; X \langle \langle Z \rangle \rangle\]</span></p>
+
+<p>When A has obtained these certificates, it can unwrap the certification path to recover a trusted copy of C's public key. Using this public key, A can send encrypted messages to C. If A wishes to receive encrypted messages back from C, then C will require A's public key, which can be obtained from the following certification path:</p>
+
+<p><span  class="math">\[C \langle \langle G \rangle \rangle \; G \langle \langle Y \rangle \rangle \; Y \langle \langle Z \rangle \rangle\]</span></p>
+
+<p><figure><img src="/docs/figures/certificate-verification.png" alt="Certificate Verification"></figure></p>
+
+<hr>
+
+<h2 id="cross-certification">Cross Certification</h2>
+
+<p>Suppose in the same example as above, but now X and Y are cross certified, that is, F and G have established a trust relationship, by signing each other's public keys. Now A's certification paths with cross certification are:</p>
+
+<p><span  class="math">\[
+\begin{aligned}
+& B \langle \langle F \rangle \rangle \; F \langle \langle X \rangle \rangle \; X \langle \langle Z \rangle \rangle\\
+& B \langle \langle F \rangle \rangle \; F \langle \langle G \rangle \rangle \; G \langle \langle Y \rangle \rangle \;  Y \langle \langle Z \rangle \rangle
+\end{aligned}
+\]</span></p>
+
+<p>which means that C only has to go up A's second certification path to find G.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

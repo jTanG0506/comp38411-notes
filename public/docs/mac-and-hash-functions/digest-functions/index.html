@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Digest Functions"><meta property="og:title" content="Digest Functions" />
+<meta property="og:description" content="Digest functions Digest functions, also known as hash functions, takes an input of any length and produces a short, fixed sized output, known as the digest or hash value. Digest functions are used everywhere in the world: Git&#39;s revision control system uses them to identify files in a repository; forensics use hash values to prove that digital artefacts have not been modified - and many more.
+
+As digest functions have a compression property, this function is a many-to-one mapping, so collisions are unavoidable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/mac-and-hash-functions/digest-functions/" />
+
+<title>Digest Functions | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/"class=active>Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/">Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Digest Functions</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="digest-functions">Digest functions</h2>
+
+<p>Digest functions, also known as hash functions, takes an input of any length and produces a short, fixed sized output, known as the <strong>digest</strong> or <strong>hash value</strong>. Digest functions are used everywhere in the world: Git's revision control system uses them to identify files in a repository; forensics use hash values to prove that digital artefacts have not been modified - and many more.</p>
+
+<p><figure><img src="/docs/figures/digest-function.png" alt="Digest Function"></figure></p>
+
+<p>As digest functions have a compression property, this function is a many-to-one mapping, so collisions are unavoidable. However, it should be difficult to find collisions in a good digest function. We will look at what it means for a hash function to be cryptographically secure by introducing two notions - namely, collision resistance and preimage resistance.</p>
+
+<hr>
+
+<h3 id="preimage-resistance">Preimage Resistance</h3>
+
+<p>A <strong>preimage</strong> of a given hash value, <span  class="math">\(h\)</span>, is any message, <span  class="math">\(m\)</span>, such that Hash(<span  class="math">\(m\)</span>) = <span  class="math">\(h\)</span>. Digest functions are sometimes referred to as <strong>one-way functions</strong> as it is easy to compute the hash from any message, but impossible to go the other way.</p>
+
+<p>Suppose I have some message <span  class="math">\(m\)</span>, such that Hash(<span  class="math">\(m\)</span>) = <span  class="math">\(h\)</span>. Even given unlimited computing power, you would never be able to determine the <span  class="math">\(m\)</span> that I used to produce this particular hash since many messages are hashing to the same value. You would be able to find messages that produced this hash value, possibly including the one I picked, but would be unable to determine the messaged I used.</p>
+
+<p>In practice, we must be sure that it is practically impossible to find any message that maps to a given hash value, nor just the messaged that was used for, which is what the notion of preimage resistance is.</p>
+
+<p><strong>First preimage resistance</strong> (or just preimage resistance), also known as the one-way property, refers to the case where is it practically impossible to find a message that hashes to a given value. That is, for any given <span  class="math">\(h\)</span>, it is difficult to find <span  class="math">\(m\)</span> such that Hash(<span  class="math">\(m\)</span>) = <span  class="math">\(h\)</span>.</p>
+
+<p><strong>Second preimage resistance</strong>, also known as weak collision resistance, on the other hand, refers to the case that given a message, <span  class="math">\(m_1\)</span>, it is practically impossible to find another message, <span  class="math">\(m_2\)</span>, that hashes to the same value as <span  class="math">\(m_1\)</span>. That is, it is difficult to find <span  class="math">\(m_1 \neq m_2\)</span>, such that Hash(<span  class="math">\(m_1\)</span>) = Hash(<span  class="math">\(m_2\)</span>).</p>
+
+<hr>
+
+<h3 id="collision-resistance">Collision Resistance</h3>
+
+<p>As a given hash function always produces a fixed-length output, collisions will inevitably exist due to the <strong>pigeonhole principle</strong>, which states that if you have <span  class="math">\(m\)</span> holes and <span  class="math">\(n\)</span> pigeons to put into those holes, and <span  class="math">\(n > m\)</span>, then at least one hole must contain more than one pigeon. More precisely, if you use <span  class="math">\(n\)</span> bits to represent the digest, there are only <span  class="math">\(2^n\)</span> distinct values for the digest.</p>
+
+<p>Despite the inevitable, it should be hard to find two distinct messages, <span  class="math">\(m_1 \neq m_2\)</span>, such that Hash(<span  class="math">\(m_1\)</span>) = Hash(<span  class="math">\(m_2\)</span>). If a hash function satisfies this condition, then we say that it is <strong>strong collision resistant</strong>, or just collision resistant.</p>
+
+<hr>
+
+<h3 id="remarks">Remarks</h3>
+
+<p>For any given hash function <span  class="math">\(H\)</span>:</p>
+
+<ul>
+<li>if <span  class="math">\(H\)</span> is collision resistant, then <span  class="math">\(H\)</span> is also second preimage resistant</li>
+<li>if <span  class="math">\(H\)</span> is second preimage resistant, then <span  class="math">\(H\)</span> is also preimage resistant</li>
+</ul>
+
+<h4 id="proof">Proof</h4>
+
+<p>We will use proof by contrapositive. As a reminder, this means that proving <span  class="math">\((\neg q \rightarrow \neg p)\)</span> is equivalent to proving <span  class="math">\((p \rightarrow q)\)</span>.</p>
+
+<ul>
+<li>Suppose that <span  class="math">\(H\)</span> is not second preimage resistant and we need to show <span  class="math">\(H\)</span> is not collision resistant. We can choose a random message <span  class="math">\(m_1\)</span>, and since <span  class="math">\(H\)</span> is not second preimage resistant, we can find <span  class="math">\(m_2 \neq m_1\)</span> such that <span  class="math">\(H(m_1) = H(m_2)\)</span>. Then, we have found two distinct messages that produce the same hash, hence a collision.</li>
+<li>Suppose <span  class="math">\(H\)</span> is not preimage resistant and we need to show that <span  class="math">\(H\)</span> is not second preimage resistant. Suppose for a given message <span  class="math">\(m_1\)</span>, we have <span  class="math">\(H(m_1) = h\)</span>. Since <span  class="math">\(H\)</span> is not preimage resistant, we can find values <span  class="math">\(m_2\)</span> such that <span  class="math">\(H(m_2) = h\)</span>, so we can choose a <span  class="math">\(m_2 \neq m_1\)</span>. Then, we have found a <span  class="math">\(m_2 \neq m_1\)</span> such that <span  class="math">\(H(m_1) = H(m_2)\)</span>, and so <span  class="math">\(H\)</span> is not second preimage resistant.</li>
+</ul>
+
+<hr>
+
+<h3 id="cryptographically-insecure-digest-functions">Cryptographically insecure digest functions</h3>
+
+<p>Suppose <span  class="math">\(H\)</span> is a hash function that is not weak collision resistant. Now, if Alice was to send a signed message to Bob, namely <span  class="math">\(m || s\)</span>, where <span  class="math">\(s = E(PR_a, H(m))\)</span> and <span  class="math">\(PR_a\)</span> is Alice's private key. An attack would be capable of intercept the message plus the encrypted hash code, <span  class="math">\(m || s\)</span>, and since <span  class="math">\(H\)</span> is not weak collision resistant, the attack can find another message <span  class="math">\(m'\)</span> such that <span  class="math">\(H(m) = H(m')\)</span>. Hence, the attacker has forged Alice's signature <span  class="math">\(s\)</span> on the message <span  class="math">\(m'\)</span>.</p>
+
+<p>Now suppose instead, <span  class="math">\(H\)</span> is not strong collision resistance. Again, assume Alice was to send a signed message to Bob. First, Alice would find two messages with the same hash, i.e. <span  class="math">\(m_1 \neq m_2\)</span> such that <span  class="math">\(H(m_1) = H(m_2)\)</span>. Alice then sends Bob one of the messages to sign, say <span  class="math">\(m_1\)</span>, and now Alice can repudiate this signature, and claim that Bob signed the message <span  class="math">\(m_2\)</span>.</p>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

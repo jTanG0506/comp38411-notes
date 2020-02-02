@@ -1,0 +1,10 @@
+baseURL = "https://comp38411.jtang.dev/"
+languageCode = "en-gb"
+title = "COMP38411"
+theme = "book"
+
+disableKinds = ['taxonomy', 'taxonomyTerm']
+
+[params]
+  BookMenuBundle = "/menu"
+  BookSearch = false

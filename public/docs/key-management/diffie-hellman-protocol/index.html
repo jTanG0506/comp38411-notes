@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Diffie-Hellman Protocol"><meta property="og:title" content="Diffie-Hellman Protocol" />
+<meta property="og:description" content="Diffie-Hellman Diffie-Hellman was the first public-key exchange protocol invented, a protocol that allows two parties to establish a shared secret by exchanging information visible to an eavesdropper. Prior to Diffie-Hellman, establishing a shared secret required inconvenient procedures such as physically exchanging sealed envelopes containing the secrets.
+ Diffie-Hellman Function The Diffie-Hellman function usually works with groups \(\mathbb{Z}_p\), that is, the set of positive integer numbers, along with multiplication modulo \(p\) as the group operation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://comp38411.jtang.dev/docs/key-management/diffie-hellman-protocol/" />
+
+<title>Diffie-Hellman Protocol | COMP38411</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.881e5f617a25d889ee043796f91d24629f299fb09dafd02dfb7e5cda023ef8b8.css" integrity="sha256-iB5fYXol2InuBDeW&#43;R0kYp8pn7Cdr9At&#43;35c2gI&#43;&#43;Lg=">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136743321-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136743321-4');
+</script>
+
+
+
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://comp38411.jtang.dev/"><span>COMP38411</span>
+  </a>
+</h2>
+
+
+
+
+
+
+    <ul>
+<li>
+<p><strong>Save The Koalas 🐨</strong></p>
+<ul>
+<li><a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">Donate to Australian Red Cross</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction</strong></p>
+<ul>
+<li><a href="/docs/introduction/revision/">Revision</a></li>
+<li><a href="/docs/introduction/key-definitions/">Key Definitions</a></li>
+<li><a href="/docs/introduction/security-attacks/">Security Attacks</a></li>
+<li><a href="/docs/introduction/achieving-security/">Achieving Security</a></li>
+<li><a href="/docs/introduction/attack-surfaces/">Attack Surfaces</a></li>
+<li><a href="/docs/introduction/security-models/">Security Models</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introduction to Cryptography</strong></p>
+<ul>
+<li><a href="/docs/introduction-to-cryptography/symmetric-encryption/">Symmetric Encryption</a></li>
+<li><a href="/docs/introduction-to-cryptography/one-time-pad/">One Time Pad</a></li>
+<li><a href="/docs/introduction-to-cryptography/transpositions/">Transpositions</a></li>
+<li><a href="/docs/introduction-to-cryptography/stream-ciphers/">Stream Ciphers</a></li>
+<li><a href="/docs/introduction-to-cryptography/how-secure/">How Secure?</a></li>
+<li><a href="/docs/introduction-to-cryptography/cryptanalysis/">Cryptanalysis</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Conventional Cryptography</strong></p>
+<ul>
+<li><a href="/docs/conventional-cryptography/block-ciphers/">Block ciphers</a></li>
+<li><a href="/docs/conventional-cryptography/fiestel-schemes/">Feistel schemes</a></li>
+<li><a href="/docs/conventional-cryptography/data-encryption-standard/">Data Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/advanced-encryption-standard/">Advanced Encryption Standard</a></li>
+<li><a href="/docs/conventional-cryptography/modes-of-operation/">Modes of Operation</a></li>
+<li><a href="/docs/conventional-cryptography/encrypting-any-message-in-cbc-mode/">Encrypting with CBC</a></li>
+<li><a href="/docs/conventional-cryptography/attacks-on-block-ciphers/">Attacks on Block Ciphers</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Cryptography</strong></p>
+<ul>
+<li><a href="/docs/public-key-cryptography/applications/">Applications of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/properties/">Properties of PKC</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-algorithm/">RSA Algorithm</a></li>
+<li><a href="/docs/public-key-cryptography/malleability-of-textbook-rsa/">Malleability of Textbook RSA</a></li>
+<li><a href="/docs/public-key-cryptography/rsa-for-encryption/">RSA for Encryption</a></li>
+<li><a href="/docs/public-key-cryptography/breaking-textbook-rsa-signatures/">Breaking Textbook RSA Signatures</a></li>
+<li><a href="/docs/public-key-cryptography/hybrid-cryptosystems/">Hybrid Cryptosystems</a></li>
+</ul>
+</li>
+<li>
+<p><strong>MAC and Hash Functions</strong></p>
+<ul>
+<li><a href="/docs/mac-and-hash-functions/digest-functions/">Digest Functions</a></li>
+<li><a href="/docs/mac-and-hash-functions/message-authentication-code/">Message Authentication Code</a></li>
+<li><a href="/docs/mac-and-hash-functions/keyed-hashes/">Keyed Hashes</a></li>
+<li><a href="/docs/mac-and-hash-functions/hmac/">HMAC</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-encryption/">Authenticated Encryption</a></li>
+<li><a href="/docs/mac-and-hash-functions/authenticated-ciphers/">Authenticated Ciphers</a></li>
+<li><a href="/docs/mac-and-hash-functions/counter-with-cbc/">Counter with CBC Mode</a></li>
+<li><a href="/docs/mac-and-hash-functions/galois-counter-mode/">Galois Counter Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Digital Signatures</strong></p>
+<ul>
+<li><a href="/docs/digital-signatures/digital-signature-algorithm/">Digital Signature Algorithm</a></li>
+<li><a href="/docs/digital-signatures/dsa-vs-rsa/">Comparison of DSA and RSA</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Public Key Infrastructure</strong></p>
+<ul>
+<li><a href="/docs/public-key-infrastructure/overview-of-pki/">Overview of PKI</a></li>
+<li><a href="/docs/public-key-infrastructure/digital-certificates/">Digital Certificates</a></li>
+<li><a href="/docs/public-key-infrastructure/x509-certificates/">X.509 Certificates</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Key Management</strong></p>
+<ul>
+<li><a href="/docs/key-management/key-management-issues/">Key Management Issues</a></li>
+<li><a href="/docs/key-management/diffie-hellman-protocol/"class=active>Diffie-Hellman Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-without-pkc/">Key Distribution without using PKC</a></li>
+<li><a href="/docs/key-management/needham-schroeder-protocol/">Needham-Schroeder Protocol</a></li>
+<li><a href="/docs/key-management/key-distribution-using-pkc/">Key Distribution using PKC</a></li>
+<li><a href="/docs/key-management/comparison-of-key-establishment-protocols/">Comparison of Key Establishment Protocols</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Entity Authentication</strong></p>
+<ul>
+<li><a href="/docs/entity-authentication/entity-authentication/">Entity Authentication</a></li>
+<li><a href="/docs/entity-authentication/unix-password-based-authentication/">UNIX Password-Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/one-time-passwords/">One Time Passwords</a></li>
+<li><a href="/docs/entity-authentication/smart-card-based-authentication/">Smart Card Based Authentication</a></li>
+<li><a href="/docs/entity-authentication/x509-certificate-based-authentication/">X.509 Certificate Based Authentication</a></li>
+</ul>
+</li>
+<li>
+<p><strong>IP Security</strong></p>
+<ul>
+<li><a href="/docs/ip-security/tcp-ip-protocol-stack/">TCP / IP Protocol Stack</a></li>
+<li><a href="/docs/ip-security/ip-sec/">IPSec</a></li>
+<li><a href="/docs/ip-security/virtual-private-networks/">Virtual Private Networks</a></li>
+<li><a href="/docs/ip-security/authentication-header/">Authentication Header</a></li>
+<li><a href="/docs/ip-security/encapsulating-security-payload/">Encapsulating Security Payload</a></li>
+<li><a href="/docs/ip-security/anti-replay/">Anti-Replay</a></li>
+<li><a href="/docs/ip-security/combining-security-associations/">Combining Security Associations</a></li>
+<li><a href="/docs/ip-security/comparison-of-ip-level-authentication/">Comparison of IP Level Authentication</a></li>
+<li><a href="/docs/ip-security/comparison-of-transport-mode-and-tunnel-mode/">Comparison of Transport Mode and Tunnel Mode</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Diffie-Hellman Protocol</strong>
+</header>
+
+      
+<article class="markdown">
+  <h2 id="donation">🐨 Save The Koalas</h2>
+  <p>The Australian Red Cross are supporting thousands of people affected by the bushfires and with your support, they can help and support these communities to recover during their time of need. <strong>If you found these notes useful, please consider donating to The Australian Red Cross <a href="https://www.redcross.org.au/campaigns/disaster-relief-and-recovery-donate">here</a></strong>.</p>
+  <hr><h2 id="diffiehellman">Diffie-Hellman</h2>
+
+<p>Diffie-Hellman was the first public-key exchange protocol invented, a protocol that allows two parties to establish a shared secret by exchanging information visible to an eavesdropper. Prior to Diffie-Hellman, establishing a shared secret required inconvenient procedures such as physically exchanging sealed envelopes containing the secrets.</p>
+
+<hr>
+
+<h3 id="diffiehellman-function">Diffie-Hellman Function</h3>
+
+<p>The Diffie-Hellman function usually works with groups <span  class="math">\(\mathbb{Z}_p\)</span>, that is, the set of positive integer numbers, along with multiplication modulo <span  class="math">\(p\)</span> as the group operation. The Diffie-Hellman function also requires a public parameter, <span  class="math">\(g\)</span>, known as the base number.</p>
+
+<p>The Diffie-Hellman function involves two private values chosen randomly from the group <span  class="math">\(\mathbb{Z}_p\)</span> by the two communicating parties, denoted <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span>. The public value associated with <span  class="math">\(a\)</span> is <span  class="math">\(A = g^a \; mod \; p\)</span> and is sent to the other party through a publicly readable message. Likewise, the public value associated with <span  class="math">\(b\)</span> is <span  class="math">\(B = g^b \; mod \; p\)</span>, which is sent to the owner of <span  class="math">\(a\)</span> through a publicly readable message.</p>
+
+<p>The <strong>shared secret</strong> can now be computed by combining either public value with the other private value, as follows:</p>
+
+<p><span  class="math">\[A^b = (g^a)^b = g^{ab} = g^{ba} = (g^b)^a = B^a\]</span></p>
+
+<p>The value <span  class="math">\(g^{ab}\)</span> is the shared secret, which can then be passed to a <em>key derivation function</em> in order to one or more shared generate symmetric keys. A key derivation function is a hash function that will return a random-looking string of the size of the desired key length.</p>
+
+<hr>
+
+<h3 id="diffiehellman-protocol">Diffie-Hellman Protocol</h3>
+
+<p>The Diffie-Hellman Protocol is the first published public-key algorithm, which allows two parties that have never met to securely exchange keys that can be used for subsequent encryption of messages.</p>
+
+<p>The security of Diffie-Hellman protocols relies on the difficulty of the discrete logarithm problem in a finite field. This is as Diffie-Hellman can be broken if we are able to recover the private value <span  class="math">\(a\)</span> from its public value <span  class="math">\(g^a\)</span>, which is reducible to solving a discrete logarithm problem.</p>
+
+<hr>
+
+<h3 id="anonymous-diffiehellman">Anonymous Diffie-Hellman</h3>
+
+<p>Anonymous Diffie-Hellman is the simplest of the Diffie-Hellman protocols, where each party picks a random value to use as a private key, say <span  class="math">\(a\)</span> for Alice and <span  class="math">\(b\)</span> for Bob, and sends the corresponding public key to the other peer.</p>
+
+<p><figure><img src="/docs/figures/anonymous-diffie-hellman.png" alt="Anonymous Diffie Hellman"></figure></p>
+
+<p>The anonymous Diffie-Hellman protocol works as follows:</p>
+
+<ol>
+<li>Alice and Bob both pick a random exponent, <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span></li>
+<li>Alice uses her exponent <span  class="math">\(a\)</span> and the base number <span  class="math">\(g\)</span> to compute <span  class="math">\(A = g^a\)</span> and sends this to Bob</li>
+<li>Bob receives <span  class="math">\(A\)</span> and computes <span  class="math">\(A^b\)</span> which is equal to <span  class="math">\(g^{ab}\)</span></li>
+<li>Bob uses his exponent <span  class="math">\(b\)</span> and the base number <span  class="math">\(g\)</span> to compute <span  class="math">\(B = g^b\)</span> and sends this to Alice</li>
+<li>Alice receives <span  class="math">\(B\)</span> and computes <span  class="math">\(B^a\)</span> which is equal to <span  class="math">\(g^{ab}\)</span></li>
+</ol>
+
+<p>This protocol is called anonymous because it is not authenticated, as the participants have no identity that can be verified by either party, and neither party holds a long-term key. That is, Alice cannot prove to Bob that she is Alice, and vice versa.</p>
+
+<p>From the diagram below, we see that anonymous Diffie-Hellman is vulnerable to man-in-the-middle attacks, where an eavesdropper needs to intercept messages to make Alice and Bob believe that they shared keys with one another. However, they shared keys with the attacker, and the attacker can intercept and read any messages encrypted with both Alice and Bob unaware.</p>
+
+<p><figure><img src="/docs/figures/anonymous-diffie-hellman-attack.png" alt="Anonymous Diffie Hellman Attack"></figure></p>
+
+<p>As normal, Alice and Bob pick random exponents, <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span>, and Alice computes and sends <span  class="math">\(A\)</span> to Bob. The attacker intercepts this message, and then picks a random exponent <span  class="math">\(c\)</span> and computes <span  class="math">\(C = g^c\)</span> to send to Bob, instead of <span  class="math">\(A\)</span>. Since this protocol has no authentication, Bob believes that <span  class="math">\(C\)</span> is indeed sent from Alice and proceeds to compute <span  class="math">\(g^{bc}\)</span>. Bob then computes and sends <span  class="math">\(B\)</span> to Alice, but again, the attacker intercepts the message and picks another random exponent <span  class="math">\(d\)</span>, computes <span  class="math">\(D = g^d\)</span> and sends this to Alice. Alice then computes <span  class="math">\(g^{ad}\)</span> as well.</p>
+
+<p>As a result, the attacker ends up using sharing the secret <span  class="math">\(g^{ad}\)</span> with Alice, and another secret <span  class="math">\(g^{bc}\)</span> with Bob, though Alice and Bob believe that they are sharing a single secret with each other. This means the attacker is able to intercept the encrypted messages, decrypt them, modify the cleartext and encrypt them before sending them on - all without Alice and Bob knowing.</p>
+
+<hr>
+
+<h3 id="authenticated-diffiehellman">Authenticated Diffie-Hellman</h3>
+
+<p>For authenticated Diffie-Hellman, both parties are equipped with both a private and a public key, allowing the parties to sign their messages in order to stop an attacker sending messages on their behalf. The signatures are computed using a public-key signature scheme such as RSA, so if an attacker wants to send a message on behalf of one of the parties, the attacker would need to forge a valid signature.</p>
+
+<p>Suppose Alice and Bob wish to establish a secret using authenticated Diffie-Hellman. Alice has a private key, <span  class="math">\(priv_A\)</span>, as well as Bob's public key, <span  class="math">\(pub_B\)</span>. We say that this type of <span  class="math">\(priv/pub\)</span> key pair is <em>long-term</em> as it is fixed in advance and remains constant through subsequent runs of the protocol. The long-term private keys should be kept a secret, while the public keys are considered to be known to an attacker.</p>
+
+<p><figure><img src="/docs/figures/authenticated-diffie-hellman.png" alt="Authenticated Diffie Hellman"></figure></p>
+
+<p>Authenticated Diffie-Hellman works as follows:</p>
+
+<ol>
+<li>Alice and Bob both pick a random exponent, <span  class="math">\(a\)</span> and <span  class="math">\(b\)</span></li>
+<li>Alice calculates <span  class="math">\(A\)</span> and a signature <span  class="math">\(sig_A\)</span> using her private key <span  class="math">\(priv_A\)</span> and sends both <span  class="math">\(A\)</span> and <span  class="math">\(sig_A\)</span> to Bob</li>
+<li>Bob receives (<span  class="math">\(A\)</span>, <span  class="math">\(sig_A\)</span>) and verifies <span  class="math">\(sig_A\)</span> using <span  class="math">\(pub_A\)</span>. If the signature is invalid, then he knows the message did not come from Alice, so he discards <span  class="math">\(A\)</span></li>
+<li>If the signature is verified, then Bob will compute <span  class="math">\(g^{ab}\)</span> from <span  class="math">\(A\)</span> and his random exponent <span  class="math">\(b\)</span></li>
+<li>Bob calculates <span  class="math">\(B\)</span> and a signature <span  class="math">\(sig_B\)</span> using his private key <span  class="math">\(priv_B\)</span> and sends both <span  class="math">\(B\)</span> and <span  class="math">\(sig_B\)</span> to Alice</li>
+<li>Alice receives (<span  class="math">\(B\)</span>, <span  class="math">\(sig_B\)</span>) and verifies <span  class="math">\(sig_B\)</span> using <span  class="math">\(pub_B\)</span> and only computes <span  class="math">\(g^{ab}\)</span> if she can verify Bob's signature</li>
+</ol>
+</article>
+<div id="container-ed2c23646475bf3cb681dcf1db6c94fb"></div>
+
+      <div class="book-footer justify-between">
+  
+
+  
+
+  
+</div>
+
+      
+    </div>
+
+    
+  
+
+
+
+  </main>
+
+  
+</body>
+
+</html>
